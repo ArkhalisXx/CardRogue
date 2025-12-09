@@ -55,11 +55,11 @@ public class CardRogue extends Application {
         loginBox.setStyle("-fx-background-color: #1a1a1a;");
         loginBox.setPadding(new Insets(50));
 
-        Label titleLabel = new Label("CARD ROGUE");
-        titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 28));
+        Label titleLabel = new Label("⋆༺\uD80CCARD\uDDA9⚔\uD80CROGUE\uDDAA༻⋆");
+        titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 44));
         titleLabel.setTextFill(Color.ORANGE);
 
-        Label subtitleLabel = new Label("⚔ Card Battle Adventure ⚔");
+        Label subtitleLabel = new Label("꧁⎝ \uD80C\uDDA9༺The Dungeon Awaits...༻\uD80C\uDDAA ⎠꧂ ");
         subtitleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         subtitleLabel.setTextFill(Color.WHITE);
 
@@ -69,7 +69,7 @@ public class CardRogue extends Application {
         formBox.setMaxWidth(400);
         formBox.setStyle("-fx-border-color: orange; -fx-border-width: 3; -fx-background-color: #2b2b2b; -fx-padding: 30;");
 
-        Label nameLabel = new Label("Enter Your Name:");
+        Label nameLabel = new Label("⋆༺\uD80CWhat...\uDDA9Be..☠\uFE0Ethy..\uFE0EName...\uD80C\uDDAA༻⋆");
         nameLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         nameLabel.setTextFill(Color.WHITE);
 
@@ -79,7 +79,7 @@ public class CardRogue extends Application {
         nameField.setStyle("-fx-background-color: #0a0a0a; -fx-text-fill: white; -fx-prompt-text-fill: gray;");
         nameField.setMaxWidth(300);
 
-        Button loginButton = new Button("START ADVENTURE");
+        Button loginButton = new Button("꧁\uD80C\uDE88\uD808\uDD9CEnter The Dungeon\uDCF8\uD808\uDD9C\uD80C\uDE89꧂");
         loginButton.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         loginButton.setStyle("-fx-background-color: #006400; -fx-text-fill: white; -fx-padding: 10 30;");
         loginButton.setOnAction(e -> {
@@ -113,22 +113,22 @@ public class CardRogue extends Application {
         menuBox.setStyle("-fx-background-color: #1a1a1a;");
         menuBox.setPadding(new Insets(50));
 
-        Label welcomeLabel = new Label("Welcome, " + playerName + "!");
+        Label welcomeLabel = new Label(".˳·˖✶\uD80C Ready..\uDDA9" + "\uD80CTo DIE\uDC7A\uD80C\uDDAA✶˖·˳. " + playerName + "?");
         welcomeLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 24));
         welcomeLabel.setTextFill(Color.ORANGE);
 
-        Label titleLabel = new Label("MAIN MENU");
-        titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 32));
+        Label titleLabel = new Label("\uD83C\uDC22\uD83C\uDC23\uD83C\uDC26\uD83C\uDC24");
+        titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 40));
         titleLabel.setTextFill(Color.WHITE);
 
         // Menu buttons
-        Button newGameButton = createMenuButton("NEW GAME", "#006400");
+        Button newGameButton = createMenuButton("⋆༺\uD80C\uDDA9Enter⚔Dungeon\uD80C\uDDAA༻⋆", "#006400");
         newGameButton.setOnAction(e -> startNewGame());
 
-        Button howToPlayButton = createMenuButton("HOW TO PLAY", "#0066cc");
+        Button howToPlayButton = createMenuButton("⋆༺\uD80C\uDDA9Prepare\uD80C\uDDAA༻⋆", "#0066cc");
         howToPlayButton.setOnAction(e -> showHowToPlay());
 
-        Button exitButton = createMenuButton("EXIT", "#8B0000");
+        Button exitButton = createMenuButton("Scared...\uD80C\uDC79‿\uD80C\uDC79 ", "#8B0000");
         exitButton.setOnAction(e -> primaryStage.close());
 
         VBox buttonBox = new VBox(15);
@@ -860,7 +860,7 @@ class UIManager {
         box.setStyle("-fx-border-color: orange; -fx-border-width: 3; -fx-background-color: #1a1a1a; -fx-padding: 15;");
         box.setMinWidth(250);
 
-        Label titleLabel = new Label("ENEMY");
+        Label titleLabel = new Label("\uD83D\uDE08 FOE \uD83D\uDE08");
         titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 20));
         titleLabel.setTextFill(Color.ORANGE);
 
@@ -887,10 +887,6 @@ class UIManager {
         center.setAlignment(Pos.CENTER);
         center.setPadding(new Insets(20));
 
-        Label playAreaLabel = new Label("CARD SLOTS (Drag cards here)");
-        playAreaLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 14));
-        playAreaLabel.setTextFill(Color.ORANGE);
-
         playedCardsBox = new HBox(15);
         playedCardsBox.setAlignment(Pos.CENTER);
         playedCardsBox.setPrefHeight(180);
@@ -899,17 +895,17 @@ class UIManager {
             playedCardsBox.getChildren().add(createEmptyCardSlot(i));
         }
 
-        attackButton = new Button("⚔ ATTACK WITH SWORD");
-        attackButton.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
+        attackButton = new Button("⚔");
+        attackButton.setFont(Font.font("Courier New", FontWeight.BOLD, 36));
         attackButton.setStyle("-fx-background-color: #8B0000; -fx-text-fill: white; -fx-padding: 15 30;");
         attackButton.setOnAction(e -> gameApp.onAttackButtonClicked());
 
-        Button menuButton = new Button("MAIN MENU");
+        Button menuButton = new Button("⚙");
         menuButton.setFont(Font.font("Courier New", FontWeight.BOLD, 14));
         menuButton.setStyle("-fx-background-color: #444444; -fx-text-fill: white; -fx-padding: 10 20;");
         menuButton.setOnAction(e -> gameApp.returnToMenu());
 
-        center.getChildren().addAll(playAreaLabel, playedCardsBox, attackButton, menuButton);
+        center.getChildren().addAll(playedCardsBox, attackButton, menuButton);
         return center;
     }
 
@@ -977,14 +973,10 @@ class UIManager {
         bottom.setPadding(new Insets(20));
         bottom.setAlignment(Pos.CENTER);
 
-        Label itemsLabel = new Label("ITEM CARDS (Drag to slots above)");
-        itemsLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
-        itemsLabel.setTextFill(Color.ORANGE);
-
         itemCardsBox = new HBox(15);
         itemCardsBox.setAlignment(Pos.CENTER);
 
-        bottom.getChildren().addAll(itemsLabel, itemCardsBox);
+        bottom.getChildren().addAll(itemCardsBox);
         return bottom;
     }
 
@@ -1028,7 +1020,7 @@ class UIManager {
     }
 
     private void updateKillCount() {
-        killCountLabel.setText("Kills: " + gameManager.getKillCount());
+        killCountLabel.setText("·:*¨༺ FOES♱SLAIN♱" + gameManager.getKillCount());
     }
 
     private void updateStatusEffects() {
