@@ -35,8 +35,8 @@ public class CardRogue extends Application {
     private String playerName;       // Logged in player name
 
     /**
-     * Main entry point for JavaFX application
-     */
+      Main entry point for the application
+     **/
     @Override
     public void start(Stage stage) {
         this.primaryStage = stage;
@@ -47,8 +47,8 @@ public class CardRogue extends Application {
     }
 
     /**
-     * Display the login screen
-     */
+      Display the login screen
+     **/
     private void showLoginScreen() {
         VBox loginBox = new VBox(20);
         loginBox.setAlignment(Pos.CENTER);
@@ -69,7 +69,7 @@ public class CardRogue extends Application {
         formBox.setMaxWidth(400);
         formBox.setStyle("-fx-border-color: orange; -fx-border-width: 3; -fx-background-color: #2b2b2b; -fx-padding: 30;");
 
-        Label nameLabel = new Label("⋆༺\uD80CWhat...\uDDA9Be..☠\uFE0Ethy..\uFE0EName...\uD80C\uDDAA༻⋆");
+        Label nameLabel = new Label("⋆༺\uD80CWho're...\uDDA9☠\uFE0E\uFE0EYou?...\uD80C\uDDAA༻⋆");
         nameLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         nameLabel.setTextFill(Color.WHITE);
 
@@ -105,8 +105,8 @@ public class CardRogue extends Application {
     }
 
     /**
-     * Display the main menu
-     */
+      Display the main menu
+     **/
     private void showMainMenu() {
         VBox menuBox = new VBox(25);
         menuBox.setAlignment(Pos.CENTER);
@@ -142,8 +142,8 @@ public class CardRogue extends Application {
     }
 
     /**
-     * Create a styled menu button
-     */
+      Create a styled menu button
+     **/
     private Button createMenuButton(String text, String color) {
         Button button = new Button(text);
         button.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
@@ -158,8 +158,8 @@ public class CardRogue extends Application {
     }
 
     /**
-     * Show how to play instructions
-     */
+      Show how to play
+     **/
     private void showHowToPlay() {
         VBox instructionsBox = new VBox(15);
         instructionsBox.setAlignment(Pos.TOP_CENTER);
@@ -189,7 +189,11 @@ public class CardRogue extends Application {
                         "• Rat - Makes you dizzy (can't use mana items for 3 turns)\n" +
                         "• Bat - Special enemy with unique abilities\n\n" +
                         "STRATEGY:\n" +
-                        "Stack attack cards before attacking for massive damage!\n";
+                        "Stack attack cards before attacking for massive damage!\n" +
+                        "Orb mechanic you must remember this sequence:\n" +
+                        "G, B, B, S, S, B, S, B, B, S, S, B\n" +
+                        "Each cards has random moves which corresponds to the sequence\n" +
+                        "G= good cards, B= normal cards, S= bad helm";
 
         Label instructionsLabel = new Label(instructions);
         instructionsLabel.setFont(Font.font("Courier New", 14));
@@ -209,8 +213,8 @@ public class CardRogue extends Application {
     }
 
     /**
-     * Start a new game
-     */
+      Start a new game
+     **/
     private void startNewGame() {
         // Initialize game objects
         player = new Player();
@@ -229,31 +233,31 @@ public class CardRogue extends Application {
     }
 
     /**
-     * Return to main menu
-     */
+      Return to main menu
+     **/
     public void returnToMenu() {
         showMainMenu();
     }
 
     /**
-     * Called when player clicks the attack button
-     */
+      Called when player clicks the attack button
+     **/
     public void onAttackButtonClicked() {
         gameManager.executePlayerTurn();
         uiManager.updateUI();
     }
 
     /**
-     * Called when a card is played to a slot
-     */
+      Called when a card is played to a slot
+     **/
     public void onCardPlayed(int handIndex, int slotIndex) {
         gameManager.playCardToSlot(handIndex, slotIndex);
         uiManager.updateUI();
     }
 
     /**
-     * Called when a card is removed from a slot
-     */
+      Called when a card is removed from a slot
+     **/
     public void onCardRemoved(int slotIndex) {
         gameManager.removeCardFromSlot(slotIndex);
         uiManager.updateUI();
@@ -266,8 +270,8 @@ public class CardRogue extends Application {
 
 // ========== PLAYER CLASS ==========
 /**
- * Represents the player character with stats and abilities
- */
+  Represents the player character with stats and abilities
+ **/
 class Player {
     private String name;
     private int health;
@@ -354,8 +358,8 @@ class Player {
 
 // ========== ENEMY CLASS ==========
 /**
- * Represents an enemy with stats and special abilities
- */
+  Represents an enemy with stats and special abilities
+ **/
 class Enemy {
     private String type;
     private int health;
@@ -395,8 +399,8 @@ class Enemy {
 
 // ========== ITEM CARD CLASS ==========
 /**
- * Represents an item card that can be played
- */
+  Represents an item card that can be played
+ **/
 class ItemCard {
     private final String type;
     private final String name;
@@ -425,8 +429,8 @@ class ItemCard {
 
 // ========== CARD FACTORY CLASS ==========
 /**
- * Creates random item cards
- */
+  Creates random item cards
+ **/
 class CardFactory {
     private final Random random;
 
@@ -475,8 +479,8 @@ class CardFactory {
 
 // ========== GAME MANAGER CLASS ==========
 /**
- * Manages all game logic including combat, card effects, and turn order
- */
+  Manages all game logic including combat, card effects, and turn order
+ **/
 class GameManager {
     private final Player player;
     private final Enemy enemy;
@@ -527,8 +531,8 @@ class GameManager {
     public boolean canAttack() { return canAttackNextTurn; }
 
     /**
-     * Spawns a new enemy with scaled stats
-     */
+      Spawns a new enemy with scaled stats
+     **/
     public void spawnNewEnemy() {
         String[] enemyTypes = {"Spider", "Rat", "Bat"};
         String type = enemyTypes[random.nextInt(enemyTypes.length)];
@@ -547,8 +551,8 @@ class GameManager {
     }
 
     /**
-     * Play a card from hand to a slot
-     */
+      Play a card from hand to a slot
+     **/
     public void playCardToSlot(int handIndex, int slotIndex) {
         if (handIndex >= 0 && handIndex < playerHand.size() && slotIndex >= 0 && slotIndex < 3) {
             if (playerHand.get(handIndex) != null && playedCards[slotIndex] == null) {
@@ -559,8 +563,8 @@ class GameManager {
     }
 
     /**
-     * Remove a card from a slot back to hand
-     */
+      Remove a card from a slot back to hand
+     **/
     public void removeCardFromSlot(int slotIndex) {
         if (slotIndex >= 0 && slotIndex < 3 && playedCards[slotIndex] != null) {
             // Find first empty slot in hand
@@ -575,8 +579,8 @@ class GameManager {
     }
 
     /**
-     * Execute the player's turn (apply card effects and attack)
-     */
+      Execute the player's turn (apply card effects and attack)
+     **/
     public void executePlayerTurn() {
         if (gameOver) return;
 
@@ -633,8 +637,8 @@ class GameManager {
     }
 
     /**
-     * Move the orb position and apply skull effects
-     */
+      Move the orb position and apply skull effects
+     **/
     private void moveOrb(int steps) {
         currentOrbPosition = (currentOrbPosition + steps) % 12;
 
@@ -645,8 +649,8 @@ class GameManager {
     }
 
     /**
-     * Apply random skull effect
-     */
+      Apply random skull effect
+     **/
     private void applySkullEffect() {
         int effect = random.nextInt(3); // 0, 1, or 2
 
@@ -664,8 +668,8 @@ class GameManager {
     }
 
     /**
-     * Clear played cards and refresh hand
-     */
+      Clear played cards and refresh hand
+     **/
     private void clearAndRefreshCards() {
         // Clear played cards
         for (int i = 0; i < 3; i++) {
@@ -679,8 +683,8 @@ class GameManager {
     }
 
     /**
-     * Apply the effect of a card
-     */
+      Apply the effect of a card
+     **/
     private void applyCardEffect(ItemCard card) {
         switch (card.getType()) {
             case "HEALTH_POTION":
@@ -714,8 +718,8 @@ class GameManager {
     }
 
     /**
-     * Execute the enemy's turn (attack player and apply status effects)
-     */
+      Execute the enemy's turn (attack player and apply status effects)
+     **/
     private void executeEnemyTurn() {
         player.takeDamage(enemy.getAttack());
 
@@ -738,8 +742,8 @@ class GameManager {
 
 // ========== UI MANAGER CLASS ==========
 /**
- * Manages all user interface elements
- */
+  Manages all user interface elements
+ **/
 class UIManager {
     private final GameManager gameManager;
     private final CardRogue gameApp;
@@ -772,8 +776,8 @@ class UIManager {
     }
 
     /**
-     * Build the entire user interface
-     */
+      Build the entire user interface
+     **/
     private void buildUI() {
         root.setTop(createTopSection());
         root.setCenter(createCenterSection());
@@ -781,8 +785,8 @@ class UIManager {
     }
 
     /**
-     * Create the top section with player and enemy stats
-     */
+      Create the top section with player and enemy stats
+     **/
     private HBox createTopSection() {
         HBox topBox = new HBox(50);
         topBox.setPadding(new Insets(20));
@@ -802,7 +806,7 @@ class UIManager {
         box.setStyle("-fx-border-color: orange; -fx-border-width: 3; -fx-background-color: #1a1a1a; -fx-padding: 15;");
         box.setMinWidth(250);
 
-        Label titleLabel = new Label(gameManager.getPlayer().getName().toUpperCase());
+        Label titleLabel = new Label("⛧°. ⋆༺☾\uD81A\uDD13" +gameManager.getPlayer().getName().toUpperCase() +"༻⋆. °⛧");
         titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 20));
         titleLabel.setTextFill(Color.ORANGE);
 
@@ -859,8 +863,8 @@ class UIManager {
     }
 
     /**
-     * Create the center section with card slots and attack button
-     */
+      Create the center section with card slots and attack button
+     **/
     private VBox createCenterSection() {
         VBox center = new VBox(20);
         center.setAlignment(Pos.CENTER);
@@ -874,7 +878,7 @@ class UIManager {
             playedCardsBox.getChildren().add(createEmptyCardSlot(i));
         }
 
-        attackButton = new Button("⚔");
+        attackButton = new Button("⋆༺\uD80C\uDDA9⚔\uD80C\uDDAA༻⋆");
         attackButton.setFont(Font.font("Courier New", FontWeight.BOLD, 36));
         attackButton.setStyle("-fx-background-color: #8B0000; -fx-text-fill: white; -fx-padding: 15 30;");
         attackButton.setOnAction(e -> gameApp.onAttackButtonClicked());
@@ -907,8 +911,8 @@ class UIManager {
     }
 
     /**
-     * Setup drag-and-drop target for a card slot
-     */
+      Setup drag-and-drop target for a card slot
+     **/
     private void setupDropTarget(VBox slot, int slotIndex) {
         slot.setOnDragOver(event -> {
             if (event.getGestureSource() != slot && event.getDragboard().hasString()) {
@@ -945,8 +949,8 @@ class UIManager {
     }
 
     /**
-     * Create the bottom section with player's hand
-     */
+      Create the bottom section with player's hand
+     **/
     private VBox createBottomSection() {
         VBox bottom = new VBox(15);
         bottom.setPadding(new Insets(20));
@@ -960,8 +964,8 @@ class UIManager {
     }
 
     /**
-     * Update all UI elements to reflect current game state
-     */
+      Update all UI elements to reflect current game state
+     **/
     public void updateUI() {
         updatePlayerStats();
         updateEnemyStats();
@@ -1054,8 +1058,8 @@ class UIManager {
     }
 
     /**
-     * Setup drag source for a card in hand
-     */
+      Setup drag source for a card in hand
+     **/
     private void setupDragSource(VBox cardBox, int cardIndex) {
         cardBox.setOnDragDetected(event -> {
             Dragboard db = cardBox.startDragAndDrop(TransferMode.MOVE);
