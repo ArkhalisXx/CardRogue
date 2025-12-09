@@ -55,11 +55,11 @@ public class CardRogue extends Application {
         loginBox.setStyle("-fx-background-color: #1a1a1a;");
         loginBox.setPadding(new Insets(50));
 
-        Label titleLabel = new Label("⋆༺\uD80CCARD\uDDA9⚔\uD80CROGUE\uDDAA༻⋆");
+        Label titleLabel = new Label("⋆༺𐌂CARD𐌩⚔𐌂ROGUE𐌪༻⋆");
         titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 44));
         titleLabel.setTextFill(Color.ORANGE);
 
-        Label subtitleLabel = new Label("꧁⎝ \uD80C\uDDA9༺The Dungeon Awaits...༻\uD80C\uDDAA ⎠꧂ ");
+        Label subtitleLabel = new Label("꧁❎𐌩༺The Dungeon Awaits...༻𐌪❎꧂ ");
         subtitleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         subtitleLabel.setTextFill(Color.WHITE);
 
@@ -69,7 +69,7 @@ public class CardRogue extends Application {
         formBox.setMaxWidth(400);
         formBox.setStyle("-fx-border-color: orange; -fx-border-width: 3; -fx-background-color: #2b2b2b; -fx-padding: 30;");
 
-        Label nameLabel = new Label("⋆༺\uD80CWhat...\uDDA9Be..☠\uFE0Ethy..\uFE0EName...\uD80C\uDDAA༻⋆");
+        Label nameLabel = new Label("⋆༺𐌂What...𐌩Be..☠︎thy..︎Name...𐌪༻⋆");
         nameLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         nameLabel.setTextFill(Color.WHITE);
 
@@ -79,7 +79,7 @@ public class CardRogue extends Application {
         nameField.setStyle("-fx-background-color: #0a0a0a; -fx-text-fill: white; -fx-prompt-text-fill: gray;");
         nameField.setMaxWidth(300);
 
-        Button loginButton = new Button("꧁\uD80C\uDE88\uD808\uDD9CEnter The Dungeon\uDCF8\uD808\uDD9C\uD80C\uDE89꧂");
+        Button loginButton = new Button("꧁𐌈𐈜Enter The Dungeon𐌸𐈜𐌉꧂");
         loginButton.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
         loginButton.setStyle("-fx-background-color: #006400; -fx-text-fill: white; -fx-padding: 10 30;");
         loginButton.setOnAction(e -> {
@@ -113,22 +113,22 @@ public class CardRogue extends Application {
         menuBox.setStyle("-fx-background-color: #1a1a1a;");
         menuBox.setPadding(new Insets(50));
 
-        Label welcomeLabel = new Label(".˳·˖✶\uD80C Ready..\uDDA9" + "\uD80CTo DIE\uDC7A\uD80C\uDDAA✶˖·˳. " + playerName + "?");
+        Label welcomeLabel = new Label(".˳·˖✶𐌂 Ready..𐌩" + "𐌂To DIE𐌺𐌪✶˖·˳. " + playerName + "?");
         welcomeLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 24));
         welcomeLabel.setTextFill(Color.ORANGE);
 
-        Label titleLabel = new Label("\uD83C\uDC22\uD83C\uDC23\uD83C\uDC26\uD83C\uDC24");
+        Label titleLabel = new Label("🂢🂣🂦🂤");
         titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 40));
         titleLabel.setTextFill(Color.WHITE);
 
         // Menu buttons
-        Button newGameButton = createMenuButton("⋆༺\uD80C\uDDA9Enter⚔Dungeon\uD80C\uDDAA༻⋆", "#006400");
+        Button newGameButton = createMenuButton("⋆༺𐌩Enter⚔Dungeon𐌪༻⋆", "#006400");
         newGameButton.setOnAction(e -> startNewGame());
 
-        Button howToPlayButton = createMenuButton("⋆༺\uD80C\uDDA9Prepare\uD80C\uDDAA༻⋆", "#0066cc");
+        Button howToPlayButton = createMenuButton("⋆༺𐌩Prepare𐌪༻⋆", "#0066cc");
         howToPlayButton.setOnAction(e -> showHowToPlay());
 
-        Button exitButton = createMenuButton("Scared...\uD80C\uDC79‿\uD80C\uDC79 ", "#8B0000");
+        Button exitButton = createMenuButton("Scared...𐌹‿𐌹 ", "#8B0000");
         exitButton.setOnAction(e -> primaryStage.close());
 
         VBox buttonBox = new VBox(15);
@@ -454,7 +454,7 @@ class CardFactory {
     }
 
     public ItemCard createRandomCard() {
-        String[] types = {"HEALTH_POTION", "MANA_POTION", "SWORD", "AXE", "FIREBALL", "BAD_HELM"};
+        String[] types = {"HEALTH_POTION", "MANA_POTION", "SWORD", "AXE", "FIREBALL", "BAD_HELM", "SHIELD"};
         String type = types[random.nextInt(types.length)];
 
         // Random move value 1-4
@@ -463,28 +463,32 @@ class CardFactory {
         switch (type) {
             case "HEALTH_POTION":
                 int healAmount = random.nextInt(11) + 10; // 10-20
-                return new ItemCard(type, "Health Potion", "Heal +" + healAmount + " | Move:" + moveValue, healAmount, 0, moveValue);
+                return new ItemCard(type, "Potion༒of༒Life", "Heal +" + healAmount + " | Move:" + moveValue, healAmount, 0, moveValue);
+
+            case "SHIELD":
+                int shieldAmount = random.nextInt(4) + 1; // 1-4
+                return new ItemCard(type, "Ankh⛨Shield", "Armor +" + shieldAmount + " | Move:" + moveValue, shieldAmount, 0, moveValue);
 
             case "MANA_POTION":
                 int manaAmount = random.nextInt(11) + 10; // 10-20
-                return new ItemCard(type, "Mana Potion", "Mana +" + manaAmount + " | Move:" + moveValue, manaAmount, 0, moveValue);
+                return new ItemCard(type, "Elixir⦿", "Mana +" + manaAmount + " | Move:" + moveValue, manaAmount, 0, moveValue);
 
             case "SWORD":
                 int swordBonus = random.nextInt(3) + 1; // 1-3
-                return new ItemCard(type, "Sword", "Next Attack +" + swordBonus + " | Move:" + moveValue, swordBonus, 0, moveValue);
+                return new ItemCard(type, "GreatBlade🗡", "Next Attack +" + swordBonus + " | Move:" + moveValue, swordBonus, 0, moveValue);
 
             case "AXE":
                 int axeBonus = random.nextInt(4) + 2; // 2-5
-                return new ItemCard(type, "Axe", "Next Attack +" + axeBonus + " | Move:" + moveValue, axeBonus, 0, moveValue);
+                return new ItemCard(type, "Waraxe𐌏", "Next Attack +" + axeBonus + " | Move:" + moveValue, axeBonus, 0, moveValue);
 
             case "FIREBALL":
                 int damage = random.nextInt(18) + 3; // 3-20
                 int cost = random.nextInt(18) + 3; // 3-20
-                return new ItemCard(type, "Fireball", "DMG:" + damage + " Cost:" + cost + " | Move:" + moveValue, damage, cost, moveValue);
+                return new ItemCard(type, "Ball🟸o'🟸Fire", "DMG:" + damage + " Cost:" + cost + " | Move:" + moveValue, damage, cost, moveValue);
 
             case "BAD_HELM":
                 int healthLoss = random.nextInt(3) + 1; // 1-3
-                return new ItemCard(type, "Bad Helm", "HP -" + healthLoss + " | Move:" + moveValue, healthLoss, 0, moveValue);
+                return new ItemCard(type, "Bad🜍Helm", "HP -" + healthLoss + " | Move:" + moveValue, healthLoss, 0, moveValue);
 
             default:
                 return new ItemCard("SWORD", "Sword", "Attack +1 | Move:1", 1, 0, 1);
@@ -714,6 +718,10 @@ class GameManager {
                 }
                 break;
 
+            case "SHIELD":
+                player.addArmor(card.getValue());
+                break;
+
             case "SWORD":
             case "AXE":
                 player.addAttackBonus(card.getValue());
@@ -768,7 +776,6 @@ class UIManager {
     private Label playerHealthLabel;
     private Label playerAttackLabel;
     private Label playerManaLabel;
-    private Label playerArmorLabel;
     private Label enemyNameLabel;
     private Label enemyHealthLabel;
     private Label enemyAttackLabel;
@@ -829,9 +836,8 @@ class UIManager {
         playerHealthLabel = createStatLabel("❤ Health: 50/50");
         playerAttackLabel = createStatLabel("⚔ Attack: 1");
         playerManaLabel = createStatLabel("🔮 Mana: 50/50");
-        playerArmorLabel = createStatLabel("🛡 Armor: 0");
 
-        box.getChildren().addAll(titleLabel, playerHealthLabel, playerAttackLabel, playerManaLabel, playerArmorLabel);
+        box.getChildren().addAll(titleLabel, playerHealthLabel, playerAttackLabel, playerManaLabel);
         return box;
     }
 
@@ -860,7 +866,7 @@ class UIManager {
         box.setStyle("-fx-border-color: orange; -fx-border-width: 3; -fx-background-color: #1a1a1a; -fx-padding: 15;");
         box.setMinWidth(250);
 
-        Label titleLabel = new Label("\uD83D\uDE08 FOE \uD83D\uDE08");
+        Label titleLabel = new Label("😈 FOE 😈");
         titleLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 20));
         titleLabel.setTextFill(Color.ORANGE);
 
@@ -1009,7 +1015,6 @@ class UIManager {
         playerAttackLabel.setText(attackText);
 
         playerManaLabel.setText("🔮 Mana: " + player.getMana() + "/" + player.getMaxMana());
-        playerArmorLabel.setText("🛡 Armor: " + player.getArmor());
     }
 
     private void updateEnemyStats() {
@@ -1052,7 +1057,7 @@ class UIManager {
     private VBox createHandCardUI(ItemCard card, int index) {
         VBox cardBox = new VBox(5);
         cardBox.setAlignment(Pos.CENTER);
-        cardBox.setStyle("-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: #1a1a1a; -fx-padding: 10; -fx-cursor: hand;");
+        cardBox.setStyle("-fx-border-color: red; -fx-border-width: 2; -fx-background-color: #450303; -fx-padding: 10; -fx-cursor: hand;");
         cardBox.setMinWidth(140);
         cardBox.setMinHeight(160);
 
